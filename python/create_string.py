@@ -9,7 +9,9 @@ def create_data():
 
 def argument_check(len):
 	if len != 3:
-		print("Usage: python pattern.py <length/query>")
+		print("Usage : ")
+		print("python pattern.py --length or -l 500")
+		print("python pattern.py --query or -q 0x41424344")
 		sys.exit(0)
 
 def create_pattern(uppercase, lowercase, numbers, length):
@@ -31,11 +33,12 @@ def create_pattern(uppercase, lowercase, numbers, length):
 				elif length - len(pattern_u) == 2:
 					pattern_u += j
 					print(pattern_u)
-                    sys.exit(0)
+					sys.exit(0)
 				else:
 					pattern_u += i+j
 
 def find_offset(uppercase, lowercase, numbers, query):
+	
 	length = 20982
 	query = query[2:]
 	bytes_object = bytearray.fromhex(query)	
@@ -45,19 +48,19 @@ def find_offset(uppercase, lowercase, numbers, query):
 	pattern_u = ''
 
 	for i in uppercase:
-        pattern_u += i
-        for j in lowercase:
-                pattern_u += j
-                for k in numbers:
-                        pattern_u += k
-			if len(pattern_u) == length:
-				pass
-                        elif length - len(pattern_u) == 1:
-                                pattern_u += i
-                        elif length - len(pattern_u) == 2:
-                                pattern_u += j
-                        else:
-                                pattern_u += i+j
+		pattern_u += i
+		for j in lowercase:
+			pattern_u += j
+			for k in numbers:
+				pattern_u += k
+				if len(pattern_u) == length:
+					pass
+				elif length - len(pattern_u) == 1:
+					pattern_u += i
+				elif length - len(pattern_u) == 2:
+					pattern_u += j
+				else:
+					pattern_u += i+j
 
 	result = pattern_u.find(ascii_string)
 	print("The offset required to overwrite Instruction Pointer is " + str(result))
@@ -67,12 +70,17 @@ if __name__ == "__main__":
 	argument_check(len(sys.argv))
 	data = create_data()
 
-	if sys.argv[1] == "length":
+	if sys.argv[1] == "--length" or sys.argv[1] == "-l":
 		length = int(sys.argv[2])
-		create_pattern(data[0], data[1], data[2]), length)
-	elif sys.argv[1] == "query":
+		create_pattern(data[0], data[1], data[2], length)
+	elif sys.argv[1] == "query" or sys.argv[1] == "-q":
 		query = str(sys.argv[2])
-		find_offset(data[0], Sdata[1], data[2], query)
+		find_offset(data[0], data[1], data[2], query)
+	else:
+		print("Usage : ")
+		print("python pattern.py --length or -l 500")
+		print("python pattern.py --query or -q 0x41424344")
+		sys.exit(0)
 
 
 
