@@ -2,7 +2,7 @@
 #include<string.h>
 
 void function(char* str) {
-	char buffer[64];
+	char buffer[88];
 	strcpy(buffer, str);
 }
 
