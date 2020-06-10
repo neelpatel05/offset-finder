@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['pattern.py'],
-             pathex=['/home/kali/Documents/offsets/python'],
+             pathex=['/home/kali/Documents/offsets'],
              binaries=[],
              datas=[],
              hiddenimports=[],
