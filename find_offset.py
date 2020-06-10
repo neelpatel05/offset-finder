@@ -6,7 +6,6 @@ query = query[2:]
 bytes_object = bytearray.fromhex(query)
 ascii_string = bytes_object.decode("ASCII")
 ascii_string = ascii_string[::-1]
-print(ascii_string)
 
 uppercase = [chr(i) for i in range(65,91)]
 lowercase = [chr(i) for i in range(97,123)]
@@ -30,4 +29,4 @@ for i in uppercase:
                                 pattern_u += i+j
 
 result = pattern_u.find(ascii_string)
-print(result)
+print("The offset required to overwrite Instruction Pointer is " + str(result))
