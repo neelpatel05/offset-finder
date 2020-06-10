@@ -8,7 +8,7 @@ char LOWERCASE[] = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o',
 char NUMBERS[] = {'0','1','2','3','4','5','6','7','8','9'};
 
 void argment_check(int number_of_argument) {
-    if (number_of_argument != 2) {
+    if (number_of_argument != 3) {
         puts("Usage ./pattern <length>");
         exit(0);
     }
@@ -50,11 +50,20 @@ void create_string(int length) {
     }
 }
 
+void find_offset(char *query) {
+    
+}
+
 int main(int argc, char** argv) {
     argment_check(argc);
 
-    int length = atoi(argv[1]);
-    create_string(length);
+    if ((strcmp(argv[1],"length") == 0) {
+        int length = atoi(argv[2]);
+        create_string(length);
+    } else if ((strcmp(argv[1],"length") == 0) {
+        create_string(21000);
+        find_offset(argv[2]);
+    }
 
     return 0;
 }
