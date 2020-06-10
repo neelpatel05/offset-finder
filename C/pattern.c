@@ -51,16 +51,27 @@ void create_string(int length) {
 }
 
 void find_offset(char *query) {
-    
+
+    char string[50];
+    int len = strlen(query);
+
+    for (int i = 0, j = 0; j < len; ++i, j+=2) {
+        int val[1];
+        sscanf(query + j, "%2x", val);
+        string[i] = val[0];
+        string[i + 1] = '\0';
+    }
+    string[strlen(string)] = '\0';
+    printf("%s",string);
 }
 
 int main(int argc, char** argv) {
     argment_check(argc);
 
-    if ((strcmp(argv[1],"length") == 0) {
+    if (strcmp(argv[1],"length") == 0) {
         int length = atoi(argv[2]);
         create_string(length);
-    } else if ((strcmp(argv[1],"length") == 0) {
+    } else if (strcmp(argv[1],"query") == 0) {
         create_string(21000);
         find_offset(argv[2]);
     }
