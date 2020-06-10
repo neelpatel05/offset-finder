@@ -16,37 +16,35 @@ void argment_check(int number_of_argument) {
 
 void create_string(int length) {
 
-    char pattern[] = "";
-    printf("%d\n",length);
-    printf("%s\n",UPPERCASE);
-    printf("%s\n",LOWERCASE);
-    printf("%s\n",NUMBERS);
+    char pattern[length];
 
     for(int  i=0; i<26; i++) {
         strncat(pattern, &UPPERCASE[i], 1);
-        printf("%s\n",pattern);
         
         for (int j=0; j<26; j++) {
             strncat(pattern, &LOWERCASE[j], 1);
-            printf("%s\n",pattern);
 
             for (int k=0; k<10; k++) {
                 strncat(pattern, &NUMBERS[k], 1);
-                printf("%s\n",pattern);
-                exit(0);
-                /*if ((strlen(pattern)-1) != length) {
-                    printf("%s",pattern);
+                
+                if ((strlen(pattern)-1) == length) {
+                    pattern[strlen(pattern)] = '\0';
+                    printf("%s\n",pattern);
+                    exit(0);
                 } else if ((length - (strlen(pattern)-1)) == 1) {
                     strncat(pattern, &UPPERCASE[i], 1);
-                    printf("%s",pattern);
+                    pattern[strlen(pattern)] = '\0';
+                    printf("%s\n",pattern);
                     exit(0);
                 } else if ((length - (strlen(pattern)-1)) == 2) {
                     strncat(pattern, &LOWERCASE[j], 1);
-                    printf("%s",pattern);
+                    pattern[strlen(pattern)] = '\0';
+                    printf("%s\n",pattern);
                     exit(0);
                 } else {
-                    strncat(&UPPERCASE[i], &LOWERCASE[j],1);
-                }*/
+                    strncat(pattern, &UPPERCASE[i],1);
+                    strncat(pattern, &LOWERCASE[j],1);
+                }
             }
         }
     }
