@@ -10,8 +10,8 @@ def create_data():
 def argument_check(len):
 	if len != 3:
 		print("Usage : ")
-		print("python pattern.py --length or -l 500")
-		print("python pattern.py --query or -q 0x41424344")
+		print("To create a pattern: \"pattern --length or -l 500\"")
+		print("To find the offset: \"pattern --query or -q 0x41424344\"")
 		sys.exit(0)
 
 def create_pattern(uppercase, lowercase, numbers, length):
@@ -38,7 +38,7 @@ def create_pattern(uppercase, lowercase, numbers, length):
 					pattern_u += i+j
 
 def find_offset(uppercase, lowercase, numbers, query):
-	
+
 	length = 20982
 	query = query[2:]
 	bytes_object = bytearray.fromhex(query)	
@@ -66,7 +66,7 @@ def find_offset(uppercase, lowercase, numbers, query):
 	print("The offset required to overwrite Instruction Pointer is " + str(result))
 
 if __name__ == "__main__":
-	
+
 	argument_check(len(sys.argv))
 	data = create_data()
 
@@ -78,8 +78,8 @@ if __name__ == "__main__":
 		find_offset(data[0], data[1], data[2], query)
 	else:
 		print("Usage : ")
-		print("python pattern.py --length or -l 500")
-		print("python pattern.py --query or -q 0x41424344")
+		print("To create a pattern: \"pattern --length or -l 500\"")
+		print("To find the offset: \"pattern --query or -q 0x41424344\"")
 		sys.exit(0)
 
 
