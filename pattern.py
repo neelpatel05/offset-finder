@@ -1,4 +1,5 @@
 import sys
+import argparse
 
 def create_data():
 	uppercase = [chr(i) for i in range(65,91)]
@@ -6,13 +7,6 @@ def create_data():
 	numbers = [chr(i) for i in range(48,58)]
 
 	return uppercase, lowercase, numbers
-
-def argument_check(len):
-	if len != 3:
-		print("Usage : ")
-		print("To create a pattern: \"pattern --length or -l 500\"")
-		print("To find the offset: \"pattern --query or -q 0x41424344\"")
-		sys.exit(0)
 
 def create_pattern(uppercase, lowercase, numbers, length):
 	pattern_u = ''
@@ -67,20 +61,24 @@ def find_offset(uppercase, lowercase, numbers, query):
 
 if __name__ == "__main__":
 
-	argument_check(len(sys.argv))
+	parser = argparse.ArgumentParser(description="Finds the offset required to overflow buffer", epilog="Enjoy overflowing buffer, but beware of canaries ;)")
+
+	parser.add_argument("-l","--length", type=int, help="The length of pattern required")
+	parser.add_argument("-q","--query", type=str, help="The value of eip when input is the generated pattern")
+
+	args = parser.parse_args()
+	args = vars(args)
 	data = create_data()
 
-	if sys.argv[1] == "--length" or sys.argv[1] == "-l":
-		length = int(sys.argv[2])
-		create_pattern(data[0], data[1], data[2], length)
-	elif sys.argv[1] == "query" or sys.argv[1] == "-q":
-		query = str(sys.argv[2])
-		find_offset(data[0], data[1], data[2], query)
-	else:
-		print("Usage : ")
-		print("To create a pattern: \"pattern --length or -l 500\"")
-		print("To find the offset: \"pattern --query or -q 0x41424344\"")
-		sys.exit(0)
+	if len(sys.argv) == 1:
+		parser.print_help(sys.stderr)
+	elif len(sys.argv) > 1:
+		if args["length"] != None:
+			length = int(args["length"])
+			create_pattern(data[0], data[1], data[2], length)
+		if args["query"] != None:
+			query = str(args["query"])
+			find_offset(data[0], data[1], data[2], query)
 
 
 
