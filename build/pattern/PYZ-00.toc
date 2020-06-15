@@ -319,4 +319,5 @@
   ('encodings.cp932', '/usr/lib/python2.7/encodings/cp932.py', 'PYMODULE'),
   ('encodings.aliases',
    '/usr/lib/python2.7/encodings/aliases.py',
-   'PYMODULE')])
+   'PYMODULE'),
+  ('argparse', '/usr/lib/python2.7/argparse.py', 'PYMODULE')])
