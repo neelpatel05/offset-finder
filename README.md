@@ -18,6 +18,22 @@ sh install.sh
 Note: This tool is only available for Linux operating system.
 
 # Usage
+
+The tools usage and available options 
+```
+usage: pattern [-h] [-l LENGTH] [-q QUERY]
+
+Finds the offset required to overflow buffer
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -l LENGTH, --length LENGTH
+                        The length of pattern required
+  -q QUERY, --query QUERY
+                        The value of eip when input is the generated pattern
+
+Enjoy overflowing buffer, but beware of canaries ;)
+```
 Following screenshots makes the usage of the tools very understandable.
 
 
