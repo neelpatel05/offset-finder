@@ -4,15 +4,16 @@ Offset finder is a tool that automatically finds the buffer length required to o
 # Installation
 ### Requirements
 * Python 2.x or 3.x
+* Pyinstaller
 * Git
 
-To install the tools run the "install.sh" script which will setup the environment and install the executable to you linux machine. Follow following commands on the terminal to install the offset-finder.
+Follow following commands on the terminal to install the offset-finder.
 
 ```
-cd /opt/
 git clone https://github.com/neelpatel05/offset-finder.git
 cd offset-finder/
-sh install.sh
+pyinstaller --onefile pattern.py
+sudo cp dist/pattern /usr/bin/
 ```
 
 Note: This tool is only available for Linux operating system.
@@ -34,6 +35,7 @@ optional arguments:
 
 Enjoy overflowing buffer, but beware of canaries ;)
 ```
+
 Following screenshots makes the usage of the tools very understandable.
 
 
